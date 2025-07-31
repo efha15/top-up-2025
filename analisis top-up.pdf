@@ -1,0 +1,65 @@
+Nama : Fajar Hidayattullah
+NIM : 20240801216
+Fakultas / Prodi : Ilmu Komputer / Teknik Informatika
+Mata Kuliah : Struktur Data
+
+ANALISIS DARI TEMA SISTEM TOP UP DIAMOND MOBILE LEGENDS
+Tujuan Pembuatan Tema Sistem Top Up Diamond Mobile Legends
+Tujuan dari pembuatan tema ini adalah untuk membangun sistem digital yang dapat memfasilitasi proses pembelian diamond untuk game Mobile Legends. Sistem ini menyediakan fitur untuk memilih paket diamond, mengelola permintaan top up, memproses pembayaran, serta melacak status transaksi. Proses ini dilakukan melalui panel admin dan user interface menggunakan Filament v12 yang terintegrasi. Sistem ini juga mengimplementasikan berbagai struktur data penting seperti array, stack, queue, tree, graph, dan searching sebagai bagian dari pembelajaran struktur data dalam kasus nyata.
+
+Manfaat
+Menyediakan proses pembelian diamond yang cepat, terstruktur, dan terpantau.
+
+Mengimplementasikan struktur data dasar dalam konteks sistem top up nyata.
+
+Mempermudah admin dalam memproses dan memonitor permintaan top up dari pengguna.
+
+Menyediakan histori transaksi menggunakan konsep stack.
+
+Menyusun antrian permintaan top up dengan prinsip queue (FIFO).
+
+Menyediakan fitur pencarian transaksi dan paket menggunakan algoritma searching.
+
+Membangun relasi pengguna menggunakan graph (hubungan friend top up).
+
+Menyusun riwayat dan hubungan entitas data menggunakan tree.
+
+Implementasi Singkat
+Data top up disimpan dalam tabel topup_requests, diamond_packages, transactions, dan users.
+
+Status permintaan dikelola melalui kolom status (pending, processing, completed).
+
+Proses permintaan disusun dalam queue sebelum diproses oleh admin.
+
+Histori transaksi ditampilkan berdasarkan konsep stack.
+
+Visualisasi jumlah top up berdasarkan status ditampilkan dengan Filament ChartWidget, tipe bar chart.
+
+Pencarian paket dan transaksi menggunakan fitur searching dengan Livewire table search atau Algolia.
+
+Relasi antar pengguna untuk fitur “gift top up” divisualisasikan sebagai graph (dari tabel friendships).
+
+Pohon riwayat transaksi dapat divisualisasikan seperti tree traversal dari user → request → transaksi.
+
+Hasil visualisasi ditampilkan di halaman dashboard admin di file:
+app/Filament/Admin/Pages/Dashboard.php
+
+Contoh status permintaan:
+Pending: menunggu pembayaran / konfirmasi admin
+
+Processing: sedang diproses oleh admin
+
+Completed: transaksi berhasil
+
+Failed: transaksi gagal atau dibatalkan
+
+Keterkaitan Data
+Data diambil langsung dari relasi antar model sebagai berikut:
+
+User → hasMany → TopUpRequest
+
+TopUpRequest → belongsTo → DiamondPackage
+
+TopUpRequest → hasOne → Transaction
+
+User ↔ User melalui Friendship (graph)
